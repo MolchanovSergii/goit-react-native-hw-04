@@ -13,6 +13,8 @@ import {
   Alert,
 } from "react-native";
 
+import BackGroundImage from "../components/BackGroundImage";
+
 const RegistrationScreen = () => {
   const [email, setEmail] = useState("");
   const [login, setLogin] = useState("");
@@ -24,44 +26,45 @@ const RegistrationScreen = () => {
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <KeyboardAvoidingView
-        behavior={Platform.OS == "ios" ? "padding" : "height"}
-      >
-        <View style={style.container}>
-          <Image
-            source={require("../assets/add_photo.png")}
-            style={style.logoUser}
-          />
-          <Image
-            style={style.addUser}
-            source={require("../assets/add.png")}
-          ></Image>
-
-          <Text style={style.title}>Реєстрація</Text>
-          <TextInput
-            style={style.input}
-            placeholder="Логін"
-            value={login}
-            onChangeText={setLogin}
-          ></TextInput>
-          <TextInput
-            style={style.input}
-            placeholder="Адреса електронної пошти"
-            value={email}
-            onChangeText={setEmail}
-          ></TextInput>
-          <TextInput
-            style={style.input}
-            placeholder="Пароль"
-            value={password}
-            onChangeText={setPassword}
-          ></TextInput>
-          <TouchableOpacity style={style.button} onPress={onLogin}>
-            <Text style={style.buttonText}>Зареєстуватися</Text>
-          </TouchableOpacity>
-          <Text style={style.titleQuestion}>Вже є акаунт? Увійти</Text>
-        </View>
-      </KeyboardAvoidingView>
+      <BackGroundImage>
+        <KeyboardAvoidingView
+          behavior={Platform.OS == "ios" ? "padding" : "height"}
+        >
+          <View style={style.container}>
+            <Image
+              source={require("../assets/add_photo.png")}
+              style={style.logoUser}
+            />
+            <Image
+              style={style.addUser}
+              source={require("../assets/add.png")}
+            ></Image>
+            <Text style={style.title}>Реєстрація</Text>
+            <TextInput
+              style={style.input}
+              placeholder="Логін"
+              value={login}
+              onChangeText={setLogin}
+            ></TextInput>
+            <TextInput
+              style={style.input}
+              placeholder="Адреса електронної пошти"
+              value={email}
+              onChangeText={setEmail}
+            ></TextInput>
+            <TextInput
+              style={style.input}
+              placeholder="Пароль"
+              value={password}
+              onChangeText={setPassword}
+            ></TextInput>
+            <TouchableOpacity style={style.button} onPress={onLogin}>
+              <Text style={style.buttonText}>Зареєстуватися</Text>
+            </TouchableOpacity>
+            <Text style={style.titleQuestion}>Вже є акаунт? Увійти</Text>
+          </View>
+        </KeyboardAvoidingView>
+      </BackGroundImage>
     </TouchableWithoutFeedback>
   );
 };

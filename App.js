@@ -1,8 +1,9 @@
-import { ImageBackground, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import { useFonts } from "expo-font";
-
-import RegistrationScreen from "./Screens/RegistrationScreen";
-// import LoginScreen from "./Screens/LoginScreen";
+import "react-native-gesture-handler";
+//
+import RegistrationScreen from "./screens/RegistrationScreen";
+import LoginScreen from "./screens/LoginScreen";
 // import PostsScreen from "./Screens/PostsScreen";
 //
 export default function App() {
@@ -16,15 +17,9 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <ImageBackground
-        source={require("./assets/photo_bg.png")}
-        resizeMode="cover"
-        style={styles.image}
-      >
-        <RegistrationScreen />
-        {/* <LoginScreen /> */}
-        {/* <PostsScreen /> */}
-      </ImageBackground>
+      {/* <RegistrationScreen /> */}
+      <LoginScreen />
+      {/* <PostsScreen /> */}
     </View>
   );
 }
@@ -33,9 +28,5 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-  },
-  image: {
-    flex: 1,
-    justifyContent: "flex-end",
   },
 });

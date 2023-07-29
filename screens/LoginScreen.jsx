@@ -12,6 +12,8 @@ import {
   Alert,
 } from "react-native";
 
+import BackGroundImage from "../components/BackGroundImage";
+
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [login, setLogin] = useState("");
@@ -22,31 +24,33 @@ const LoginScreen = () => {
 
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <KeyboardAvoidingView
-        behavior={Platform.OS == "ios" ? "padding" : "height"}
-      >
-        <View style={style.container}>
-          <Text style={style.title}>Увійти</Text>
-          <TextInput
-            style={style.input}
-            placeholder="Логін"
-            value={login}
-            onChangeText={setLogin}
-          ></TextInput>
-          <TextInput
-            style={style.input}
-            placeholder="Адреса електронної пошти"
-            value={email}
-            onChangeText={setEmail}
-          ></TextInput>
-          <TouchableOpacity style={style.button} onPress={onLogin}>
-            <Text style={style.buttonText}>Увійти</Text>
-          </TouchableOpacity>
-          <Text style={style.titleQuestion}>
-            Немає акаунту? Зареєструватися
-          </Text>
-        </View>
-      </KeyboardAvoidingView>
+      <BackGroundImage>
+        <KeyboardAvoidingView
+          behavior={Platform.OS == "ios" ? "padding" : "height"}
+        >
+          <View style={style.container}>
+            <Text style={style.title}>Увійти</Text>
+            <TextInput
+              style={style.input}
+              placeholder="Логін"
+              value={login}
+              onChangeText={setLogin}
+            ></TextInput>
+            <TextInput
+              style={style.input}
+              placeholder="Адреса електронної пошти"
+              value={email}
+              onChangeText={setEmail}
+            ></TextInput>
+            <TouchableOpacity style={style.button} onPress={onLogin}>
+              <Text style={style.buttonText}>Увійти</Text>
+            </TouchableOpacity>
+            <Text style={style.titleQuestion}>
+              Немає акаунту? Зареєструватися
+            </Text>
+          </View>
+        </KeyboardAvoidingView>
+      </BackGroundImage>
     </TouchableWithoutFeedback>
   );
 };
