@@ -3,7 +3,7 @@ import { Text, View, StyleSheet } from "react-native";
 const CommentsScreen = () => {
   return (
     <View style={style.container}>
-      <Text style={style.title}>Домашня сторінка</Text>
+      <Text style={style.title}>CommentsScreen</Text>
     </View>
   );
 };

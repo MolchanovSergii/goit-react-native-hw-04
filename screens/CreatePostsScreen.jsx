@@ -3,7 +3,7 @@ import { Text, View, StyleSheet } from "react-native";
 const CreatePostsScreen = () => {
   return (
     <View style={style.container}>
-      <Text style={style.title}>Домашня сторінка</Text>
+      <Text style={style.title}>CreatePostsScreen</Text>
     </View>
   );
 };

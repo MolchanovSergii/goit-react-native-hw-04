@@ -12,6 +12,7 @@ import {
   Keyboard,
   Alert,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import BackGroundImage from "../components/BackGroundImage";
 
@@ -19,9 +20,21 @@ const RegistrationScreen = () => {
   const [email, setEmail] = useState("");
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
+  const navigation = useNavigation();
 
-  const onLogin = () => {
-    Alert.alert("Credentials", `${email} + ${login}+ ${password}`);
+  const handleLogin = () => {
+    if (email === "" || login === "" || password === "") {
+      Alert.alert(
+        "!!Обратите внимание!!",
+        "все поля формы регистрации должны быть заполнены"
+      );
+      return;
+    }
+
+    navigation.navigate("Home");
+    setEmail("");
+    setLogin("");
+    setPassword("");
   };
 
   return (
@@ -58,10 +71,15 @@ const RegistrationScreen = () => {
               value={password}
               onChangeText={setPassword}
             ></TextInput>
-            <TouchableOpacity style={style.button} onPress={onLogin}>
+            <TouchableOpacity style={style.button} onPress={handleLogin}>
               <Text style={style.buttonText}>Зареєстуватися</Text>
             </TouchableOpacity>
-            <Text style={style.titleQuestion}>Вже є акаунт? Увійти</Text>
+            <Text
+              style={style.titleQuestion}
+              onPress={() => navigation.navigate("Login")}
+            >
+              Вже є акаунт? Увійти
+            </Text>
           </View>
         </KeyboardAvoidingView>
       </BackGroundImage>
@@ -76,9 +94,7 @@ const style = StyleSheet.create({
     paddingLeft: 16,
     paddingRight: 16,
     paddingTop: 80,
-    // paddingBottom: 10,
-    // paddingBottom: 20,
-
+    paddingBottom: 20,
     backgroundColor: "rgba(255, 255, 255, 1)",
     borderTopLeftRadius: 25,
     borderTopRightRadius: 25,
@@ -131,7 +147,7 @@ const style = StyleSheet.create({
     paddingLeft: 32,
     paddingRight: 32,
     marginTop: 20,
-    marginBottom: 16,
+    marginBottom: 10,
     backgroundColor: "#FF6C00",
     borderRadius: 100,
   },

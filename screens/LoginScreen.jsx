@@ -11,15 +11,27 @@ import {
   Keyboard,
   Alert,
 } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 import BackGroundImage from "../components/BackGroundImage";
 
 const LoginScreen = () => {
   const [email, setEmail] = useState("");
   const [login, setLogin] = useState("");
+  const navigation = useNavigation();
 
-  const onLogin = () => {
-    Alert.alert("Credentials", `${email} + ${password}`);
+  const handleLogin = () => {
+    if (email === "" || login === "") {
+      Alert.alert(
+        "!!Обратите внимание!!",
+        "все поля формы регистрации должны быть заполнены"
+      );
+      return;
+    }
+
+    navigation.navigate("Home");
+    setEmail("");
+    setLogin("");
   };
 
   return (
@@ -42,10 +54,13 @@ const LoginScreen = () => {
               value={email}
               onChangeText={setEmail}
             ></TextInput>
-            <TouchableOpacity style={style.button} onPress={onLogin}>
+            <TouchableOpacity style={style.button} onPress={handleLogin}>
               <Text style={style.buttonText}>Увійти</Text>
             </TouchableOpacity>
-            <Text style={style.titleQuestion}>
+            <Text
+              style={style.titleQuestion}
+              onPress={() => navigation.navigate("Registration")}
+            >
               Немає акаунту? Зареєструватися
             </Text>
           </View>

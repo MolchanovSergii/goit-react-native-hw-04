@@ -9,7 +9,7 @@ import {
 const PostsScreen = () => {
   return (
     <View style={style.container}>
-      <Text style={style.title}>Публікації</Text>
+      <Text style={style.title}>PostsScreen</Text>
     </View>
   );
 };
