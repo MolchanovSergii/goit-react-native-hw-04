@@ -20,7 +20,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <MainStack.Navigator>
+      <MainStack.Navigator initialRouteName="Login">
         <MainStack.Screen
           name="Registration"
           component={RegistrationScreen}
