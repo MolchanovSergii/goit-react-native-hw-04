@@ -1,36 +1,74 @@
 import React from "react";
-import { Text, View, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { Ionicons } from "@expo/vector-icons";
 
-
+import PostsScreen from "./PostsScreen";
+import CreatePostsScreen from "./CreatePostsScreen";
+import ProfileScreen from "./ProfileScreen";
+import LogOutButton from "../components/LogOutButton";
 
 const Tabs = createBottomTabNavigator();
 
 const Home = () => {
   return (
-    
-  )
+    <Tabs.Navigator
+      initialRouteName="Posts"
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+          let backgroundColor;
+
+          if (route.name === "Posts") {
+            iconName = focused ? "grid" : "grid-outline";
+          } else if (route.name === "CreatePosts") {
+            iconName = focused ? "add" : "add-outline";
+          } else if (route.name === "Profile") {
+            iconName = focused ? "person" : "person-outline";
+          }
+
+          backgroundColor = focused ? "tomato" : "transparent";
+
+          return (
+            <View
+              style={[
+                style.iconContainer,
+                { backgroundColor: backgroundColor },
+              ]}
+            >
+              <Ionicons name={iconName} size={24} color={color} />
+            </View>
+          );
+        },
+
+        tabBarActiveTintColor: "white",
+        tabBarInactiveTintColor: "gray",
+        tabBarShowLabel: false,
+        tabBarStyle: {
+          height: 83,
+          paddingTop: 9,
+          paddingBottom: 22,
+        },
+      })}
+    >
+      <Tabs.Screen
+        name="Posts"
+        component={PostsScreen}
+        options={{ headerRight: () => <LogOutButton /> }}
+      />
+      <Tabs.Screen name="CreatePosts" component={CreatePostsScreen} />
+      <Tabs.Screen name="Profile" component={ProfileScreen} />
+    </Tabs.Navigator>
+  );
 };
 
 const style = StyleSheet.create({
-  container: {
+  iconContainer: {
+    width: 70,
+    height: 40,
     justifyContent: "center",
     alignItems: "center",
-    width: "100%",
-    paddingLeft: 16,
-    paddingRight: 16,
-    borderBottomWidth: 1,
-    borderBottomColor: "rgba(0, 0, 0, 0.3)",
-    borderBottomStyle: "solid",
-  },
-  title: {
-    fontFamily: "Roboto-Medium",
-    fontSize: 17,
-    fontWeight: 500,
-    lineHeight: 22,
-    letterSpacing: -0.41,
-    textAlign: "center",
-    marginBottom: 33,
+    borderRadius: 20,
   },
 });
 
