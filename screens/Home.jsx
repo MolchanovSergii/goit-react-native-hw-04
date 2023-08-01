@@ -7,6 +7,7 @@ import PostsScreen from "./PostsScreen";
 import CreatePostsScreen from "./CreatePostsScreen";
 import ProfileScreen from "./ProfileScreen";
 import LogOutButton from "../components/LogOutButton";
+import ComeBackButton from "../components/ComeBackButton";
 
 const Tabs = createBottomTabNavigator();
 
@@ -56,8 +57,16 @@ const Home = () => {
         component={PostsScreen}
         options={{ headerRight: () => <LogOutButton /> }}
       />
-      <Tabs.Screen name="CreatePosts" component={CreatePostsScreen} />
-      <Tabs.Screen name="Profile" component={ProfileScreen} />
+      <Tabs.Screen
+        name="CreatePosts"
+        component={CreatePostsScreen}
+        options={{ headerLeft: () => <ComeBackButton /> }}
+      />
+      <Tabs.Screen
+        name="Profile"
+        component={ProfileScreen}
+        options={{ headerLeft: () => <ComeBackButton /> }}
+      />
     </Tabs.Navigator>
   );
 };
